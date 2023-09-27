@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { UserModule } from './user/user.module';
 import { Users } from 'entities/users.entity';
+import { MyDaily } from 'entities/my_daily.entity';
+import { MyDailyModule } from './my-daily/my-daily.module';
 
 @Module({
   imports: [
@@ -15,10 +17,11 @@ import { Users } from 'entities/users.entity';
       username: 'postgres',
       password: '123456',
       database: 'postgres',
-      entities: [Users],
-      synchronize: true,
+      entities: [Users, MyDaily],
+      // synchronize: true,
     }),
     UserModule,
+    MyDailyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
