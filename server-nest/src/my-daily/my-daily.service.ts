@@ -12,4 +12,21 @@ export class MyDailyService {
   async createDaily(dailyData: Array<Partial<MyDaily>>) {
     return await this.myDailyRepo.save(dailyData);
   }
+
+  async getDailyByBulkFilter(params: {
+    filter: {
+      from: Date;
+      to: Date;
+    };
+  }) {
+    const { from, to } = params.filter;
+    return await this.myDailyRepo.find({
+      where: {
+        createdAt: {
+          $gte: from,
+          $lt: to,
+        },
+      },
+    });
+  }
 }

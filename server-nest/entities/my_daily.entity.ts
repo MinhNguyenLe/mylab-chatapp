@@ -5,8 +5,8 @@ export class MyDaily {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('integer', { nullable: true })
-  type: number;
+  @Column('varchar', { nullable: true })
+  type: string;
 
   @Column('varchar', { nullable: true })
   description: string;
@@ -16,4 +16,7 @@ export class MyDaily {
 
   @Column({ type: 'timestamp', nullable: true })
   to: Date;
+
+  @Column({ type: 'timestamp', nullable: true })
+  createdAt: Date;
 }
