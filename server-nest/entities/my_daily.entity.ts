@@ -18,5 +18,5 @@ export class MyDaily {
   to: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  createdAt: Date;
+  created_at: Date;
 }

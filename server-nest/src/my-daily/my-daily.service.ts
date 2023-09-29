@@ -20,15 +20,16 @@ export class MyDailyService {
 
     return this.myDailyRepo
       .createQueryBuilder('my_daily')
-      .andWhere('my_daily.createdAt >= :from', { from })
-      .andWhere('my_daily.createdAt < :to', { to })
+      .andWhere('my_daily.created_at IS NOT NULL')
+      .andWhere('my_daily.created_at >= :from', { from })
+      .andWhere('my_daily.created_at <= :to', { to })
       .select(['my_daily.type AS type'])
+      .groupBy('type')
       .select([
         'type',
-        "JSON_AGG(json_build_object('from', my_daily.from, 'to', my_daily.to)) as data",
+        "JSON_AGG(json_build_object('from', my_daily.from, 'to', my_daily.to, 'created_at', my_daily.created_at)) as data",
       ])
-      .groupBy('type')
-      .where('type IS NOT NULL')
+      .andWhere('type IS NOT NULL')
       .getRawMany();
   }
 }
