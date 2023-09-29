@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Query, Post } from '@nestjs/common';
 import { MyDailyService } from './my-daily.service';
 import { MyDaily } from 'entities/my_daily.entity';
 
@@ -14,15 +14,13 @@ export class MyDailyController {
 
   @Get('get-by-bulk-filter')
   async getDailyByBulkFilter(
-    @Body()
-    params: {
-      filter: {
-        from: Date;
-        to: Date;
-      };
+    @Query()
+    filter: {
+      from: Date;
+      to: Date;
     },
   ) {
-    console.log('In: ', params);
-    return this.myDailyService.getDailyByBulkFilter(params);
+    console.log('In: ', filter);
+    return this.myDailyService.getDailyByBulkFilter(filter);
   }
 }

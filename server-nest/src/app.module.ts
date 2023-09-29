@@ -20,7 +20,7 @@ import { MyDailyModule } from 'src/my-daily/my-daily.module';
       password: '123456',
       database: 'postgres',
       entities: [Users, MyDaily],
-      // synchronize: true,
+      synchronize: true,
     }),
     // MongooseModule.forRoot('mongodb://localhost/ttl'),
     // MongoMyDailyModule,
