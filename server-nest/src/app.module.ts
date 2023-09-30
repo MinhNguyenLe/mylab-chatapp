@@ -7,6 +7,7 @@ import { UserModule } from 'src/user/user.module';
 import { Users } from 'entities/users.entity';
 import { MyDaily } from 'entities/my_daily.entity';
 import { MyDailyModule } from 'src/my-daily/my-daily.module';
+import { FacebookStrategy } from './facebook.strategy';
 // import { MongooseModule } from '@nestjs/mongoose';
 // import { MongoMyDailyModule } from './mongo-my-daily/mongo-my-daily.module';
 
@@ -28,7 +29,7 @@ import { MyDailyModule } from 'src/my-daily/my-daily.module';
     MyDailyModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, FacebookStrategy],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}
