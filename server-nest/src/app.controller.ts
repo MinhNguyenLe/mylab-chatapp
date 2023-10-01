@@ -13,16 +13,28 @@ export class AppController {
 
   @Get('/facebook')
   @UseGuards(AuthGuard('facebook'))
-  async facebookLogin(): Promise<any> {
+  async facebookLogin() {
     return HttpStatus.OK;
   }
 
   @Get('/facebook/redirect')
   @UseGuards(AuthGuard('facebook'))
-  async facebookLoginRedirect(@Req() req: any): Promise<any> {
+  async facebookLoginRedirect(@Req() req: any) {
     return {
       statusCode: HttpStatus.OK,
       data: req.user,
     };
+  }
+
+  @Get('/google')
+  @UseGuards(AuthGuard('google'))
+  async googleAuth() {
+    return HttpStatus.OK;
+  }
+
+  @Get('/google/redirect')
+  @UseGuards(AuthGuard('google'))
+  googleAuthRedirect(@Req() req) {
+    return this.appService.googleLogin(req);
   }
 }
